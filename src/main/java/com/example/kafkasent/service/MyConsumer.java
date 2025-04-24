@@ -17,10 +17,13 @@ public class MyConsumer {
     }
 
     @KafkaListener(topics = "my-topic",groupId = "myGroup", containerFactory = "myGroupKafkaListenerContainerFactory")
-    public void listen(MyObject myObject) {
+    public void listen(MyObject myObject) throws InterruptedException {
 
 
         System.out.println("CONSUMER listen object  " + myObject.getName() + " " + myObject.getCount());
+
+        Thread.sleep(5000);
+
         myObject.setName("FINAL");
 
         kafkaTemplate.send("finalTopic", myObject);

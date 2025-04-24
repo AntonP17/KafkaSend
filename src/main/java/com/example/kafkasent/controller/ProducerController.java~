@@ -24,6 +24,7 @@ public class ProducerController {
 
     @PostMapping("/send")
     public void send(@RequestBody MyObject myObject) {
+       // kafkaTemplate.send("my-topic", myObject);
 
         producer.sendObject(myObject);
 

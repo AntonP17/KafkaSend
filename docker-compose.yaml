@@ -1,6 +1,14 @@
 version: '3.8'
 
 services:
+  postgres: # Добавлен новый сервис для PostgreSQL
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ordersKafka # Настройки базы данных
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 297032
+    ports:
+      - "5432:5432"
   zookeeper:
     image: confluentinc/cp-zookeeper:latest
     environment:
@@ -27,7 +35,11 @@ services:
     build: .
     depends_on:
       - kafka
+      - postgres
     environment:
       SPRING_KAFKA_BOOTSTRAP_SERVERS: kafka:29092
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/ordersKafka  # Настройки для подключения к PostgreSQL
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: 297032
     ports:
       - "8080:8080"
