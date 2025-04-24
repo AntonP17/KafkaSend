@@ -1,5 +1,7 @@
-package com.example.kafkasent;
+package com.example.kafkasent.controller;
 
+import com.example.kafkasent.model.MyObject;
+import com.example.kafkasent.service.MyProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -7,17 +9,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class MyProducer {
+public class ProducerController {
 
-    private final KafkaTemplate<String, MyObject> kafkaTemplate;
+    private final MyProducer producer;
 
     @Autowired
-    public MyProducer(KafkaTemplate<String, MyObject> kafkaTemplate) {
-        this.kafkaTemplate = kafkaTemplate;
+    public ProducerController(MyProducer producer) {
+        this.producer = producer;
+
     }
 
     @PostMapping("/send")
     public void send(@RequestBody MyObject myObject) {
-        kafkaTemplate.send("my-topic", myObject);
+       // kafkaTemplate.send("my-topic", myObject);
+
+        producer.sendObject(myObject);
+
     }
 }

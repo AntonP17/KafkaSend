@@ -1,4 +1,4 @@
-package com.example.kafkasent;
+package com.example.kafkasent.model;
 
 public class MyObject {
 
