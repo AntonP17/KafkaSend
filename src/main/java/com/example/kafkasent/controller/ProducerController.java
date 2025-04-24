@@ -2,6 +2,7 @@ package com.example.kafkasent.controller;
 
 import com.example.kafkasent.model.MyObject;
 import com.example.kafkasent.service.MyProducer;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class ProducerController {
     }
 
     @PostMapping("/send")
-    public void send(@RequestBody MyObject myObject) {
+    public void send(@RequestBody MyObject myObject) throws JsonProcessingException {
 
         producer.sendObject(myObject);
 

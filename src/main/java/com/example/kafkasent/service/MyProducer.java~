@@ -28,6 +28,8 @@ public class MyProducer {
 
         System.out.println("Producer take object - " + myObject.getName() + " " + myObject.getCount());
 
+
+
         MyObject saveObject = myObjectRepository.save(myObject);
 
         System.out.println("Producer save object - " + saveObject.getName() + " " + saveObject.getCount());
