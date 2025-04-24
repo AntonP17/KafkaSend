@@ -8,7 +8,7 @@ public class MyConsumer {
 
     @KafkaListener(topics = "my-topic")
     public void listen(MyObject myObject) {
-        System.out.println("Received: " + myObject.getField1() + " " + myObject.getField2());
+        System.out.println("Received: " + myObject.getName() + " " + myObject.getCount());
     }
 
 }
